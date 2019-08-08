@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  pikabot:
+    image: pikabot:latest
+    container_name: pikabot
+    build:
+      context: .
+      args:
+        SLACK_TEAM_ID: ${SLACK_TEAM_ID}
+        SLACK_VERIFICATION_TOKEN: ${SLACK_VERIFICATION_TOKEN}
+    ports:
+      - 5000:5000
