@@ -11,8 +11,11 @@ ARG verification_token
 ENV FLASK_APP=pika_app.py
 ENV SLACK_TEAM_ID=$team_id
 ENV SLACK_VERIFICATION_TOKEN=$verification_token
-EXPOSE 5000
-CMD ["flask", "run"]
+
+EXPOSE 5000/tcp
+EXPOSE 5000/udp
+
+CMD ["flask", "run", "--host", "0.0.0.0"]
 
 
 
