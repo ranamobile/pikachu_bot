@@ -7,8 +7,9 @@ RUN pip install -r requirements.txt
 
 ARG team_id
 ARG verification_token
+ARG app
 
-ENV FLASK_APP=pika_app.py
+ENV FLASK_APP=$app
 ENV SLACK_TEAM_ID=$team_id
 ENV SLACK_VERIFICATION_TOKEN=$verification_token
 

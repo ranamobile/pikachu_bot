@@ -1,4 +1,5 @@
 import os
+import random
 
 from flask import abort, Flask, jsonify, request
 
@@ -22,6 +23,28 @@ def hello_there():
     return jsonify(
             response_type='in_channel', 
             text=command
+    )
+
+@app.route('/mark', methods=['POST'])
+def merp():
+    if not is_request_valid(request):
+        abort(400)
+    
+    command = request.form['text']    
+
+    if command == '':
+        command = 'pi?'
+
+    new_command = ""
+    for letter in command:
+        if random.randint(0, 1) == 1:
+            new_command += letter.upper()
+	else:
+            new_command += letter.lower()
+
+    return jsonify(
+            response_type='in_channel', 
+            text=new_command
     )
 
 @app.route('/', methods=['GET', 'POST'])
